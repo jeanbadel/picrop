@@ -1,6 +1,6 @@
 /*!
 * jQuery Picrop - Version: 20121227
-* http://www.google.fr
+* https://github.com/jeanbadel/picrop
 * Copyright (c) 2012 JB. Delhommeau; Dual licensed: MIT/GPL
 * Requires: jQuery v1.7 or later
 */
