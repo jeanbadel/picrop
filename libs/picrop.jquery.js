@@ -55,7 +55,7 @@
 						}
 						methods.loadPictures(src, fx, this);
 					}else{
-						methods.crop(this, settings.fx);
+						methods.crop($(this), settings.fx);
 					}
 				});
 			}
@@ -77,7 +77,7 @@
 				hhpic = wrappic.height(),
 				hwpic = ((hpic * wwpic) / wpic),
 				whpic = ((wpic * hhpic) / hpic);
-			var duration = pic.data('duration');
+			var duration = parseInt(pic.data('duration'));
 
 			if(hwpic >= hhpic){
 				var rectify = ((hwpic - hhpic) / 2);
@@ -91,8 +91,8 @@
 				   .css("margin-left", "-" + rectify + "px");
 			}
 
-			if(duration === undefined || isNaN(parseInt(duration))){
-				duration = settings.duration;
+			if(duration === undefined || isNaN(duration)){
+				duration = parseInt(settings.duration);
 			}
 
 			wrappic.removeClass(settings.loader);
