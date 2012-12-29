@@ -1,0 +1,21 @@
+.picrop{
+	overflow: hidden;
+	position: relative;
+	background-color: #EFEFEF;
+}
+
+.picrop img{
+	max-width: inherit!important;
+	max-height: inherit!important;
+}
+
+.picrop.loading:before{
+	content: "Loading...";
+}
+
+.picrop.loading{
+	background-color: #EFEFEF;
+	box-shadow: inset 0px 0px 16px #CCCCCC;
+	text-align: center;
+	font-weight: bold;
+}
