@@ -6,7 +6,27 @@ L'image s'adapte simplement à la taille désiré en centrant son contenu.
 
 ## Mise en place
 
-Prochainement...
+1. Installer [jQuery 1.7+](http://docs.jquery.com/Downloading_jQuery) and [picrop](https://github.com/jeanbadel/picrop/master)
+2. Appelez les scripts suivants dans l'en-tête <head> de votre document HTML:
+
+        <script type="text/javascript" src="jquery.js"></script>
+        <script type="text/javascript" src="jquery.picrop.min.js"></script>
+        
+3. Inclure le fichier CSS suivant:
+
+        <link rel="stylesheet" href="jquery.picrop.css">
+        
+4. Appelez .picrop() sur l'élement parent avec les dimentions de votre choix
+
+        Ex:
+        <div class="picrop">
+          <img ...>
+        </div>
+        <script>
+          $(function(){
+            $('.picrop').picrop();
+          });
+        </script>
 
 ## Bug ou amélioration
 
