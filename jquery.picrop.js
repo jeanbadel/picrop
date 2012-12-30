@@ -29,6 +29,8 @@
 				'fx'		: false,
 				'duration'	: 400,
 				'loader'	: 'loading',
+				'dirx'		: 'center',
+				'diry'		: 'center',
 				'onCrop'	: function(){},
 			}, options);
 
@@ -70,25 +72,27 @@
 
 		crop: function(pic, fx){
 			var wrappic = pic.parent(),
-				wpic = pic.width(),
-				hpic = pic.height(),
+				wpic  = pic.width(),
+				hpic  = pic.height(),
 				wwpic = wrappic.width(),
 				hhpic = wrappic.height(),
 				hwpic = ((hpic * wwpic) / wpic),
-				whpic = ((wpic * hhpic) / hpic);
+				whpic = ((wpic * hhpic) / hpic),
+				top   = 0,
+				left  = 0;
 			var duration = parseInt(pic.data('duration'));
 
 			if(hwpic >= hhpic){
-				var rectify = ((hwpic - hhpic) / 2);
+				var top = ((hwpic - hhpic) / 2);
 				pic.width(wwpic)
-				   .height(hwpic)
-				   .css("margin-top", "-" + rectify + "px");
+				   .height(hwpic);
 			}else if(whpic >= wwpic){
-				var rectify = ((whpic - wwpic) / 2);
+				var left = ((whpic - wwpic) / 2);
 				pic.height(hhpic)
-				   .width(whpic)
-				   .css("margin-left", "-" + rectify + "px");
+				   .width(whpic);
 			}
+
+			methods.cropDirection(pic, wrappic, top, left);
 
 			if(duration === undefined || isNaN(duration)){
 				duration = parseInt(settings.duration);
@@ -102,6 +106,41 @@
 			}
 
 			settings.onCrop(pic, wrappic);
+		},
+
+		cropDirection: function(pic, wrappic, top, left){
+			var cdirx = (pic.data('dirx')!=undefined?pic.data('dirx'):settings.dirx),
+				cdiry = (pic.data('diry')!=undefined?pic.data('diry'):settings.diry);
+
+			switch (cdirx) {
+				case 'center':
+					left = left;
+					break;
+				case 'left':
+					left = 0;
+					break;
+				case 'right':
+					left = (pic.width()-wrappic.width());
+					break;
+				default:
+					left = cdirx;
+					break;
+			}
+			switch (cdiry) {
+				case 'center':
+					top = top;
+					break;
+				case 'top':
+					top = 0;
+					break;
+				case 'bottom':
+					top = (pic.height()-wrappic.height());
+					break;
+				default:
+					top = cdiry;
+					break;
+			}
+			pic.css("margin-top", "-" + top + "px").css("margin-left", "-" + left + "px");
 		}
 	};
 

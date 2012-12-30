@@ -5,8 +5,8 @@
 }
 
 .picrop img{
-	max-width: inherit!important;
-	max-height: inherit!important;
+	max-width: none!important;
+	max-height: none!important;
 }
 
 .picrop.loading:before{
