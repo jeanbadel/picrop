@@ -21,7 +21,8 @@
 
 	//Variables list
 	var settings,
-		els;
+		els,
+		cptcrop;
 
 	var methods = {
 		init : function( options ){
@@ -32,10 +33,12 @@
 				'dirx'		: 'center',
 				'diry'		: 'center',
 				'onCrop'	: function(){},
+				'allCrop'	: function(){},
 			}, options);
 
 			els = $(this),
 			pics = els.find("img");
+			cptcrop = 0;
 
 			methods.startHandle();
 		},
@@ -106,6 +109,13 @@
 			}
 
 			settings.onCrop(pic, wrappic);
+			methods.cropHandler();
+		},
+
+		cropHandler: function(){
+			cptcrop++;
+			if(cptcrop >= pics.length)
+				settings.allCrop(pics, els);
 		},
 
 		cropDirection: function(pic, wrappic, top, left){
