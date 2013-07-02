@@ -32,13 +32,19 @@
 				'loader'	: 'loading',
 				'dirx'		: 'center',
 				'diry'		: 'center',
+				'force'		: false,
 				'onCrop'	: function(){},
 				'allCrop'	: function(){},
 			}, options);
 
 			els = $(this),
-			pics = els.find("img");
 			cptcrop = 0;
+			
+			if(settings.force){
+				pics = els.find("img");
+			}else{
+				pics = els.find("img:not(.crop)");
+			}
 
 			methods.startHandle();
 		},
